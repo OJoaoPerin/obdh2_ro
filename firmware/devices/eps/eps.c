@@ -188,7 +188,7 @@ int eps_get_data(eps_data_t *data)
 {
     int err = -1;
     int err_drv = -1;
-    unsigned char err_id[45] = {0};
+    unsigned char err_id[45];
 
     if (eps_is_open)
     {
