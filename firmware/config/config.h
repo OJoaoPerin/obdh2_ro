@@ -50,7 +50,7 @@
 #define CONFIG_TASK_TIME_CONTROL_ENABLED                1
 #define CONFIG_TASK_READ_EDC_ENABLED                    0
 #define CONFIG_TASK_READ_EPS_ENABLED                    1
-#define CONFIG_TASK_READ_TTC_ENABLED                    1
+#define CONFIG_TASK_READ_TTC_ENABLED                    0
 #define CONFIG_TASK_READ_ANTENNA_ENABLED                0
 #define CONFIG_TASK_DATA_LOG_ENABLED                    1
 #define CONFIG_TASK_PROCESS_TC_ENABLED                  1

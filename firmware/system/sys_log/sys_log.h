@@ -236,6 +236,8 @@ void sys_log_print_float(float flt, uint8_t digits);
  */
 void sys_log_print_byte(uint8_t byte);
 
+void sys_log_print_bit_array_as_hex(unsigned char *bit_array, uint16_t bit_len);
+
 /**
  * \brief Prints the system time in milliseconds.
  *

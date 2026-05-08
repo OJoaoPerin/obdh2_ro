@@ -310,6 +310,37 @@ void sys_log_print_byte(uint8_t byte)
     sys_log_uart_write_byte(byte);
 }
 
+//GERADO IA
+void sys_log_print_bit_array_as_hex(unsigned char *bit_array, uint16_t bit_len) {
+    // Calculamos quantos bytes completos existem
+    // Se tiver 10 bits, precisamos processar 2 bytes.
+    uint16_t total_bytes = (bit_len + 7) / 8; 
+
+    for (uint16_t i = 0; i < total_bytes; i++) {
+        uint8_t current_byte = 0;
+
+        // Agrupa até 8 bits para formar 1 byte
+        for (uint8_t b = 0; b < 8; b++) {
+            uint16_t bit_index = (i * 8) + b;
+            
+            if (bit_index < bit_len) {
+                if (bit_array[bit_index] == 1) {
+                    // Monta o byte (MSB first - bit mais significativo primeiro)
+                    current_byte |= (1 << (7 - b));
+                }
+            }
+        }
+
+        // Usa sua função existente para imprimir o byte em Hex
+        sys_log_print_hex(current_byte);
+
+        // Espaço entre bytes para legibilidade
+        if (i < (total_bytes - 1)) {
+            sys_log_print_msg(" ");
+        }
+    }
+}
+
 void sys_log_print_system_time(void)
 {
     sys_log_set_color(SYS_LOG_SYSTEM_TIME_COLOR);
