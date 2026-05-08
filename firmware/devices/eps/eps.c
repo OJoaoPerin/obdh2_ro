@@ -188,7 +188,7 @@ int eps_get_data(eps_data_t *data)
 {
     int err = -1;
     int err_drv = -1;
-    int err_id[45] = -1;
+    unsigned char err_id[45] = {0};
 
     if (eps_is_open)
     {
@@ -197,7 +197,6 @@ int eps_get_data(eps_data_t *data)
         if (err_drv == 0)
         {
             err = 0;
-            err_id[45] = 0;
         }
         else
         {
@@ -207,7 +206,7 @@ int eps_get_data(eps_data_t *data)
             sys_log_new_line();
 
             sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_MODULE_NAME, "Array of errors! - (");
-            sys_log_print_str(err_id);
+            sys_log_print_str((char)err_id);
             sys_log_print_msg(")");
             sys_log_new_line();
         }
