@@ -334,7 +334,7 @@ static void sl_eps2_read_data_test(void **state)
 
     sl_eps2_data_t data_res = {0};
 
-    assert_return_code(sl_eps2_read_data(conf, &data_res), 0);
+    assert_return_code(sl_eps2_read_data(conf, &data_res, NULL, NULL), 0);
 
     assert_int_equal(data_val.time_counter,                     data_res.time_counter);
     assert_int_equal(data_val.temperature_uc,                   data_res.temperature_uc);

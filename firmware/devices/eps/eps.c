@@ -187,19 +187,27 @@ int eps_get_bat_charge(eps_charge_t *charge)
 int eps_get_data(eps_data_t *data)
 {
     int err = -1;
+    int err_drv = -1;
+    int err_id[45] = -1;
 
     if (eps_is_open)
     {
-        int err_drv = sl_eps2_read_data(eps_config, data);
+        sl_eps2_read_data(eps_config, data, &err_drv, err_id);
 
         if (err_drv == 0)
         {
             err = 0;
+            err_id[45] = 0;
         }
         else
         {
-            sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_MODULE_NAME, "Error reading the data! (error ");
+            sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_MODULE_NAME, "Error reading the data! (errors: ");
             sys_log_print_int(err_drv);
+            sys_log_print_msg(")");
+            sys_log_new_line();
+
+            sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_MODULE_NAME, "Array of errors! - (");
+            sys_log_print_str(err_id);
             sys_log_print_msg(")");
             sys_log_new_line();
         }
